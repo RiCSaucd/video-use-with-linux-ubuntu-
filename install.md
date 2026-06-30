@@ -23,7 +23,7 @@ And one thing must be true about the current agent:
 
 ## Install prompt contract
 
-- Do everything yourself. Only ask the user for things you cannot generate — the ElevenLabs API key, and confirmation before `brew install`.
+- Do everything yourself. Only ask the user for things you cannot generate — the ElevenLabs API key, and confirmation before package-manager installs that require elevated privileges.
 - Prefer a stable clone path like `~/Developer/video-use` (not `/tmp`, not `~/Downloads`).
 - The skill references helpers by bare name (`transcribe.py`, `render.py`). That works because SKILL.md and `helpers/` ship together — keep them as siblings when you register the skill.
 - After install, verify by running one real command against one real file. Don't declare success on file-existence checks alone.
@@ -53,13 +53,13 @@ command -v uv >/dev/null && uv sync || pip install -e .
 `ffmpeg` and `ffprobe` are hard requirements. `yt-dlp` is only needed if the user wants to pull sources from URLs. Animation engines such as HyperFrames, Remotion, and Manim are installed lazily the first time a project actually needs them.
 
 ```bash
-# macOS
-command -v ffmpeg >/dev/null || brew install ffmpeg
-command -v yt-dlp >/dev/null || brew install yt-dlp     # optional
+# Ubuntu / Debian
+command -v ffmpeg >/dev/null || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+command -v yt-dlp >/dev/null || sudo apt-get install -y yt-dlp     # optional
 
-# Debian / Ubuntu
-# sudo apt-get update && sudo apt-get install -y ffmpeg
-# pip install yt-dlp
+# macOS
+# command -v ffmpeg >/dev/null || brew install ffmpeg
+# command -v yt-dlp >/dev/null || brew install yt-dlp
 
 # Arch
 # sudo pacman -S ffmpeg yt-dlp

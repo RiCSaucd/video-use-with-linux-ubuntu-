@@ -58,8 +58,13 @@
   # 2. Install deps
   cd ~/Developer/video-use
   uv sync                         # or: pip install -e .
-  brew install ffmpeg             # required
-  brew install yt-dlp             # optional, for downloading online sources
+  # Ubuntu / Debian
+  sudo apt-get update
+  sudo apt-get install -y ffmpeg  # required
+  sudo apt-get install -y yt-dlp  # optional, for downloading online sources
+  # macOS
+  # brew install ffmpeg
+  # brew install yt-dlp
   
   # 3. Add your ElevenLabs API key
   cp .env.example .env
